@@ -6,22 +6,22 @@
 //  Copyright (c) 2014 Mani Kishore Chitrala. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "SideMenuViewController.h"
 
-@interface ViewController ()
-
+@interface SideMenuViewController ()
+{
+    SWRevealViewController *revealVC;
+}
 @end
 
-@implementation ViewController
+@implementation SideMenuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
+
 
 @end

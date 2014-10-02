@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="h6o-Gn-6c4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +16,113 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8t-5d-3Iu">
+                                <rect key="frame" x="170" y="505" width="261" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="261" id="qjo-Ne-bKr"/>
+                                    <constraint firstAttribute="height" constant="48" id="ylv-Zj-xaw"/>
+                                </constraints>
+                                <state key="normal" image="Sign-in-With-Facebook.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginWithFacebook:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5Eh-2K-gdc"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="X8t-5d-3Iu" secondAttribute="centerX" constant="-0.5" id="Ial-k9-L8q"/>
+                            <constraint firstAttribute="centerY" secondItem="X8t-5d-3Iu" secondAttribute="centerY" constant="-229" id="Uby-8a-jYx"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2xa-8J-npa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="891" y="-1329"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="Icb-Ur-qhh">
+            <objects>
+                <viewController id="h6o-Gn-6c4" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q37-b2-4BB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gos-h1-gRH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GDc-jN-NXJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="W0K-iu-088" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="ZLc-UB-cZc"/>
+                        <segue destination="DDm-Bt-FHj" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="Tif-KK-jDd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aGl-cQ-Uwy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1011" y="-685"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3r4-EX-RdL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W0K-iu-088" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VEK-qR-vNM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="2Y1-im-WO7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b1K-Dg-NRn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-20" y="-1337"/>
+        </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="wqv-zb-Bay">
+            <objects>
+                <viewController id="DDm-Bt-FHj" customClass="SideMenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1q4-0E-T7r"/>
+                        <viewControllerLayoutGuide type="bottom" id="3Xl-UR-2RY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UZ9-5F-pdM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JKr-bz-bqx">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCell" id="DnB-Qd-m1X">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DnB-Qd-m1X" id="Dej-XP-1mh">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="W0K-iu-088" kind="custom" identifier="SideMenu_Home" customClass="SWRevealViewControllerSeguePushController" id="1bS-RW-o4t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nLz-Ho-DsP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-13" y="-51"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Sign-in-With-Facebook.png" width="521" height="93"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1bS-RW-o4t"/>
+    </inferredMetricsTieBreakers>
 </document>
