@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SWRevealViewController.h"
 
-@interface SideMenuViewController : UIViewController<SWRevealViewControllerDelegate>
+@interface SideMenuViewController : UIViewController<SWRevealViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>
 
 
 @end

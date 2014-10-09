@@ -1,39 +1,35 @@
 //
-//  ParentViewController.m
+//  HomeViewController.m
 //  iGive
 //
-//  Created by Mani Kishore Chitrala on 10/2/14.
+//  Created by Mani Kishore Chitrala on 10/3/14.
 //  Copyright (c) 2014 Mani Kishore Chitrala. All rights reserved.
 //
 
-#import "ParentViewController.h"
+#import "HomeViewController.h"
+#import "PostingTableViewCell.h"
 
-@interface ParentViewController ()
+@interface HomeViewController ()
 {
     SWRevealViewController *revealVC;
 }
 @end
 
-@implementation ParentViewController
+@implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+//    [super viewWillAppear:NO];
+    self.navigationController.navigationBarHidden = NO;
     [self setupSideMenuButton];
 }
 
 - (void)setupSideMenuButton
 {
-    self.navigationController.navigationBarHidden = NO;
     revealVC = [self revealViewController];
     revealVC.delegate = self;
     [revealVC tapGestureRecognizer];
@@ -42,9 +38,27 @@
     self.navigationItem.hidesBackButton = YES;
 }
 
-- (void)showErrorAlertView:(NSString *)error
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [[[UIAlertView alloc]initWithTitle:@"Network Error" message:error delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil]show];
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PostingTableViewCell *cell;
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"PostingTableViewCell" owner:self options:nil]objectAtIndex:0];
+    }
+
+    return cell;
+}
+- (IBAction)give:(id)sender {
+    [self performSegueWithIdentifier:@"Home_Donate" sender:self];
 }
 
 /*

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWRevealViewController.h"
 
-@interface ParentViewController : UIViewController
+@interface ParentViewController : UIViewController<SWRevealViewControllerDelegate>
 - (void)showErrorAlertView:(NSString *)error;
 
 @end

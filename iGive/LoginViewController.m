@@ -9,7 +9,6 @@
 #import "LoginViewController.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <Parse/Parse.h>
-
 #import <MBProgressHUD.h>
 
 @interface LoginViewController ()
@@ -22,24 +21,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     [[PFUser currentUser]refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (error) {
             [PFUser logOut];
         }
         else if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-            [self performSegueWithIdentifier:@"loginToHome" sender:self];
+            [self performSegueWithIdentifier:@"Login_Home" sender:self];
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
     
-    
+
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (BOOL)prefersStatusBarHidden
 {
-    [self setupSideMenuButton];
+    return YES;
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +85,7 @@
                     [[PFInstallation currentInstallation]setObject:[PFUser currentUser] forKey:@"user"];
                     [[PFInstallation currentInstallation]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         if (succeeded) {
-                            
+                            [self performSegueWithIdentifier:@"Login_Home" sender:self];
                         }
                     }];
                 }];
@@ -96,7 +98,7 @@
         [[PFInstallation currentInstallation]setObject:[PFUser currentUser] forKey:@"user"];
         [[PFInstallation currentInstallation]saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                [self performSegueWithIdentifier:@"loginToHome" sender:self];
+                [self performSegueWithIdentifier:@"Login_Home" sender:self];
             }
             else
             {
@@ -107,15 +109,6 @@
     }
 }
 
-- (void)setupSideMenuButton
-{
-    revealVC = [self revealViewController];
-    revealVC.delegate = self;
-    [revealVC tapGestureRecognizer];
-    UIBarButtonItem *sideMenuButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Menu.png"] style:UIBarButtonItemStylePlain target:revealVC action:@selector(revealToggle:)];
-    self.navigationItem.leftBarButtonItem = sideMenuButton;
-    self.navigationItem.hidesBackButton = YES;
-}
 
 /*
 #pragma mark - Navigation
