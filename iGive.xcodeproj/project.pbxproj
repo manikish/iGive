@@ -49,6 +49,9 @@
 		3CE1A86819DE07EE000DA60B /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE1A86719DE07EE000DA60B /* GlobalData.m */; };
 		3CE1A86B19DE0ECD000DA60B /* ParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE1A86A19DE0ECD000DA60B /* ParentViewController.m */; };
 		3CE1A86D19DE1487000DA60B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE1A86C19DE1487000DA60B /* FacebookSDK.framework */; };
+		3CFD8F3319E8982B0090649C /* ViewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFD8F3219E8982B0090649C /* ViewPostViewController.m */; };
+		3CFD8F3619E8A0A00090649C /* RequestContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFD8F3519E8A0A00090649C /* RequestContactViewController.m */; };
+		3CFD8F3819E8A4560090649C /* Location-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CFD8F3719E8A4560090649C /* Location-Icon@2x.png */; };
 		C8DAC1399374B997897DB9FA /* libPods-iGive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61617AC2C530DBAB069B7B24 /* libPods-iGive.a */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +125,11 @@
 		3CE1A86919DE0ECD000DA60B /* ParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentViewController.h; sourceTree = "<group>"; };
 		3CE1A86A19DE0ECD000DA60B /* ParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentViewController.m; sourceTree = "<group>"; };
 		3CE1A86C19DE1487000DA60B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		3CFD8F3119E8982B0090649C /* ViewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPostViewController.h; sourceTree = "<group>"; };
+		3CFD8F3219E8982B0090649C /* ViewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPostViewController.m; sourceTree = "<group>"; };
+		3CFD8F3419E8A0A00090649C /* RequestContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestContactViewController.h; sourceTree = "<group>"; };
+		3CFD8F3519E8A0A00090649C /* RequestContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestContactViewController.m; sourceTree = "<group>"; };
+		3CFD8F3719E8A4560090649C /* Location-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Location-Icon@2x.png"; path = "iGive/Resources/Location-Icon@2x.png"; sourceTree = "<group>"; };
 		61617AC2C530DBAB069B7B24 /* libPods-iGive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iGive.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB836077ABA90AA6F34593F9 /* Pods-iGive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iGive/Pods-iGive.debug.xcconfig"; sourceTree = "<group>"; };
 		F4DD62EF9CF1883FC24395B1 /* Pods-iGive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGive.release.xcconfig"; path = "Pods/Target Support Files/Pods-iGive/Pods-iGive.release.xcconfig"; sourceTree = "<group>"; };
@@ -265,6 +273,7 @@
 		3C783C4B19DC5CCD007C8951 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3CFD8F3719E8A4560090649C /* Location-Icon@2x.png */,
 				3CA7961719E739D3007CD625 /* Menu@2x.png */,
 				3C1320E019E5F76F00245E75 /* arrow_event@2x.png */,
 				3C2B06EA19E0C82B00E33B47 /* About-Us@2x.png */,
@@ -297,6 +306,10 @@
 				3CA7961219E72EF4007CD625 /* PlaceAnnotation.m */,
 				3CA7961419E7331F007CD625 /* NavigationController.h */,
 				3CA7961519E7331F007CD625 /* NavigationController.m */,
+				3CFD8F3119E8982B0090649C /* ViewPostViewController.h */,
+				3CFD8F3219E8982B0090649C /* ViewPostViewController.m */,
+				3CFD8F3419E8A0A00090649C /* RequestContactViewController.h */,
+				3CFD8F3519E8A0A00090649C /* RequestContactViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -404,6 +417,7 @@
 				3C24C90719DBA12600A1E716 /* Images.xcassets in Resources */,
 				3C2B06F019E0C82C00E33B47 /* About-Us@2x.png in Resources */,
 				3C2B06F119E0C82C00E33B47 /* Contact@2x.png in Resources */,
+				3CFD8F3819E8A4560090649C /* Location-Icon@2x.png in Resources */,
 				3C2B06F219E0C82C00E33B47 /* Help@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,8 +476,10 @@
 				3C24C8FF19DBA12600A1E716 /* AppDelegate.m in Sources */,
 				3C24C8FC19DBA12600A1E716 /* main.m in Sources */,
 				3C4B099619DF5223004A0E61 /* PostViewController.m in Sources */,
+				3CFD8F3319E8982B0090649C /* ViewPostViewController.m in Sources */,
 				3CA7961619E7331F007CD625 /* NavigationController.m in Sources */,
 				3C783C4819DC5600007C8951 /* SWRevealViewController.m in Sources */,
+				3CFD8F3619E8A0A00090649C /* RequestContactViewController.m in Sources */,
 				3CA7961319E72EF4007CD625 /* PlaceAnnotation.m in Sources */,
 				3C783C4E19DC5DBC007C8951 /* LoginViewController.m in Sources */,
 				3C2B06E919E0C22100E33B47 /* PostingTableViewCell.m in Sources */,

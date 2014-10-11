@@ -8,7 +8,8 @@
 
 #import "ParentViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface LocationViewController : ParentViewController<CLLocationManagerDelegate, UISearchBarDelegate>
+@interface LocationViewController : ParentViewController<CLLocationManagerDelegate, UISearchBarDelegate,MKMapViewDelegate>
 
 @end

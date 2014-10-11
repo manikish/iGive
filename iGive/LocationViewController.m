@@ -9,7 +9,7 @@
 #import "LocationViewController.h"
 #import <MapKit/MapKit.h>
 #import "PlaceAnnotation.h"
-
+#import "GlobalData.h"
 static NSString *kCellIdentifier = @"cellIdentifier";
 
 @interface LocationViewController ()
@@ -145,15 +145,18 @@ static NSString *kCellIdentifier = @"cellIdentifier";
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    [self handleSearchForSearchString:searchString];
-    return YES;
+    if (searchString.length > 2) {
+        [self handleSearchForSearchString:searchString];
+        return YES;
+    }
+    return NO;
 }
 
 
 #pragma mark - UISearchBar Delegate
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView  {
-//    tableView.frame = CGRectMake(self.searchDisplayController.searchBar.frame.origin.x, self.searchDisplayController.searchBar.frame.origin.y-20.0,self.searchDisplayController.searchBar.frame.size.width, 176.0);
+    tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y, tableView.frame.size.width, 176.0);
 }
 
 - (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
@@ -185,6 +188,40 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     // called "stopUpdatingLocation", remove us as the delegate to be sure
 }
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    PlaceAnnotation *selectedPlaceAnnotation = view.annotation;
+    [GlobalData sharedGlobalData].selectedLocationGeoPoint = [PFGeoPoint geoPointWithLatitude:selectedPlaceAnnotation.coordinate.latitude longitude:selectedPlaceAnnotation.coordinate.longitude];
+    NSLog(@"%f %f",[GlobalData sharedGlobalData].selectedLocationGeoPoint.latitude,[GlobalData sharedGlobalData].selectedLocationGeoPoint.longitude);
+}
+
+- (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation {
+    MKPinAnnotationView *pin = (MKPinAnnotationView *) [self.mkMapView dequeueReusableAnnotationViewWithIdentifier: @"myPin"];
+    if (pin == nil) {
+        pin = [[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"myPin"];
+    } else {
+        pin.annotation = annotation;
+    }
+    
+    pin.canShowCallout = YES;
+    pin.enabled = YES;
+    pin.animatesDrop = YES;
+    pin.draggable = YES;
+    
+    return pin;
+}
+
+//- (void)mapView:(MKMapView *)mapView
+// annotationView:(MKAnnotationView *)annotationView
+//didChangeDragState:(MKAnnotationViewDragState)newState
+//   fromOldState:(MKAnnotationViewDragState)oldState
+//{
+//    if (newState == MKAnnotationViewDragStateEnding)
+//    {
+//        CLLocationCoordinate2D droppedAt = annotationView.annotation.coordinate;
+//        [GlobalData sharedGlobalData].selectedLocationGeoPoint = [PFGeoPoint geoPointWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
+//    }
+//}
 
 /*
 #pragma mark - Navigation
@@ -195,5 +232,8 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)done:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

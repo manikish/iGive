@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <Parse/Parse.h>
 @interface PostingTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet PFImageView *postThumbnail;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

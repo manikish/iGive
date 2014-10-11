@@ -14,13 +14,15 @@
 {
     SWRevealViewController *revealVC;
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation SideMenuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.scrollEnabled   = NO;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

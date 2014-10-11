@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 Mani Kishore Chitrala. All rights reserved.
 //
 
-#import "PostViewController.h"
+#import <Parse/Parse.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <MBProgressHUD.h>
+
+#import "PostViewController.h"
+#import "GlobalData.h"
 
 @interface PostViewController ()
 {
@@ -150,18 +154,6 @@
     } else {
         imageToUpload = originalImage;
     }
-    
-    /* if ([UIScreen mainScreen].bounds.size.height == 568.0) {
-     UIGraphicsBeginImageContext(CGSizeMake(640, 1136));
-     [imageToSave drawInRect: CGRectMake(0, 0, 640, 1136)];
-     }
-     else
-     {
-     UIGraphicsBeginImageContext(CGSizeMake(640, 960));
-     [imageToSave drawInRect: CGRectMake(0, 0, 640, 960)];
-     }
-     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-     UIGraphicsEndImageContext();*/
     imageData = UIImageJPEGRepresentation(imageToUpload, 0.0);
     [self.imageUploadButton setBackgroundImage:imageToUpload forState:UIControlStateNormal];
 
@@ -170,6 +162,37 @@
     [self performSegueWithIdentifier:@"Post_Location" sender:self];
 }
 - (IBAction)post:(id)sender {
+    if (self.title.length > 0) {
+        if (imageData!= nil) {
+            if ([GlobalData sharedGlobalData].selectedLocationGeoPoint != nil) {
+                PFObject *post = [PFObject objectWithClassName:@"Posts"];
+                [post setObject:self.title forKey:@"title"];
+                [post setObject:[PFFile fileWithName:@"image.jpg" data:imageData contentType:@"image/jpeg"] forKey:@"imageData"];
+                [post setObject:[GlobalData sharedGlobalData].selectedLocationGeoPoint forKey:@"geoLocation"];
+                [post setObject:[PFUser currentUser] forKey:@"user"];
+                [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    else{
+                        [[[UIAlertView alloc]initWithTitle:@"Network Error" message:@"Please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil]show];
+                    }
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }];
+            }
+            else{
+                [[[UIAlertView alloc]initWithTitle:nil message:@"Please pick a location" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil]show];
+            }
+        }
+        else
+        {
+            [[[UIAlertView alloc]initWithTitle:nil message:@"Please take a picture" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil]show];
+        }
+    }
+    else{
+        [[[UIAlertView alloc]initWithTitle:nil message:@"Please give a title" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil]show];
+    }
     
 }
 

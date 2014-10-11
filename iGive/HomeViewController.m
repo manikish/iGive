@@ -6,24 +6,31 @@
 //  Copyright (c) 2014 Mani Kishore Chitrala. All rights reserved.
 //
 
+#import <Parse/Parse.h>
+#import <MBProgressHUD.h>
+
 #import "HomeViewController.h"
 #import "PostingTableViewCell.h"
+#import "ViewPostViewController.h"
 
 @interface HomeViewController ()
 {
     SWRevealViewController *revealVC;
+    NSArray *postsArray;
+    PFObject *viewPost;
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self fetchPosts];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    [super viewWillAppear:NO];
     self.navigationController.navigationBarHidden = NO;
     [self setupSideMenuButton];
 }
@@ -43,9 +50,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)fetchPosts
+{
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    PFQuery *fetchPosts = [PFQuery queryWithClassName:@"Posts"];
+    [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        postsArray = objects;
+        [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    }];
+
+//    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+//        PFQuery *fetchPosts = [PFQuery queryWithClassName:@"Posts"];
+//        [fetchPosts whereKey:@"geoLocation" nearGeoPoint:geoPoint withinMiles:100.0];
+//        [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            postsArray = objects;
+//            [self.tableView reloadData];
+//            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+//        }];
+//    }];
+    
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [postsArray count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -54,13 +83,31 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"PostingTableViewCell" owner:self options:nil]objectAtIndex:0];
     }
-
+    PFObject *post = [postsArray objectAtIndex:indexPath.row];
+    [cell.titleLabel setText:[post objectForKey:@"title"]];
+    PFFile *imageFile = [post objectForKey:@"imageFile"];
+    [cell.postThumbnail setFile:imageFile];
+    [cell.postThumbnail loadInBackground];
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    viewPost = [postsArray objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"Postings_ViewPost" sender:self];
+}
+
 - (IBAction)give:(id)sender {
     [self performSegueWithIdentifier:@"Home_Donate" sender:self];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Postings_ViewPost"]) {
+        ViewPostViewController *viewPostVC = [segue destinationViewController];
+        viewPostVC.post = viewPost;
+    }
+}
 /*
 #pragma mark - Navigation
 
