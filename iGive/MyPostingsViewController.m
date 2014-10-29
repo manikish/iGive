@@ -15,7 +15,7 @@
 
 @interface MyPostingsViewController ()
 {
-    NSArray *postsArray;
+    NSMutableArray *postsArray;
     NSArray *requestsArray;
     PFObject *requesterPost;
 }
@@ -40,7 +40,7 @@
     PFQuery *fetchPosts = [PFQuery queryWithClassName:@"Posts"];
     [fetchPosts whereKey:@"user" equalTo:[PFUser currentUser]];
     [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        postsArray = objects;
+        postsArray = [[NSMutableArray alloc]initWithArray:objects];
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     }];
@@ -118,7 +118,7 @@
     [fetchRequest findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [PFObject deleteAllInBackground:objects];
         [post deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [postsArray delete:post];
+            [postsArray removeObject:post];
             [self.tableView reloadData];
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         }];

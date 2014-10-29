@@ -12,7 +12,7 @@
 
 @interface MyRequestsViewController ()
 {
-    NSArray *postsArray;
+    NSMutableArray *postsArray;
     NSArray *requestsArray;
 }
 @end
@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    postsArray = [[NSMutableArray alloc]init];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self fetchPosts];
 }
@@ -32,7 +33,7 @@
     [fetchPosts whereKey:@"requester" equalTo:[PFUser currentUser]];
     [fetchPosts includeKey:@"requestedPost"];
     [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        postsArray = objects;
+        postsArray = [[NSMutableArray alloc]initWithArray:objects];
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     }];
@@ -65,10 +66,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     PFObject *post = [postsArray objectAtIndex:indexPath.row];
     [post deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [postsArray delete:post];
+        [postsArray removeObject:post];
         [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     }];
 }
 /*
