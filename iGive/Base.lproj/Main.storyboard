@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="h6o-Gn-6c4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="h6o-Gn-6c4">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -179,6 +179,7 @@
                     <connections>
                         <outlet property="locationDetailsButton" destination="c0u-bM-pQh" id="T4z-tD-q1W"/>
                         <outlet property="postImageView" destination="b8G-aS-v81" id="aWN-l1-dZR"/>
+                        <outlet property="requestContactButton" destination="AfH-Rd-neL" id="QKk-dB-toB"/>
                         <outlet property="titleLabel" destination="ZSs-sl-gFY" id="15C-5Q-VqQ"/>
                         <segue destination="Bfn-gr-Vah" kind="push" identifier="ViewPost_Request" id="hlY-4T-sFG"/>
                     </connections>
@@ -199,7 +200,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Your Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y7u-Jg-Mnt">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Your Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="y7u-Jg-Mnt">
                                 <rect key="frame" x="10" y="10" width="300" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -207,25 +208,25 @@
                                     <constraint firstAttribute="width" constant="300" id="mx2-k1-IOR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Bfn-gr-Vah" id="qgg-fa-Deo"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Your Mobile Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jxc-km-COe">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Your E-mail Address" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Jxc-km-COe">
                                 <rect key="frame" x="10" y="68" width="300" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Bfn-gr-Vah" id="mz2-ic-hw3"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Your email Id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oCy-dm-bcR">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Your Mobile Number" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oCy-dm-bcR">
                                 <rect key="frame" x="10" y="126" width="300" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Bfn-gr-Vah" id="yQc-TZ-yGF"/>
                                 </connections>
@@ -262,9 +263,9 @@
                     <navigationItem key="navigationItem" id="ozB-wd-CpI"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="emailIdTextField" destination="oCy-dm-bcR" id="DgB-Wl-KZk"/>
+                        <outlet property="emailIdTextField" destination="Jxc-km-COe" id="K86-bc-ECx"/>
                         <outlet property="nameTextField" destination="y7u-Jg-Mnt" id="4N2-Kt-NiY"/>
-                        <outlet property="phoneNumberTextField" destination="Jxc-km-COe" id="3zB-kA-3sg"/>
+                        <outlet property="phoneNumberTextField" destination="oCy-dm-bcR" id="Odk-3Z-azg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHv-36-E8f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,6 +395,138 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="buY-1E-aOp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1289" y="-1266"/>
+        </scene>
+        <!--My Postings View Controller-->
+        <scene sceneID="YjX-Fy-03k">
+            <objects>
+                <viewController id="YAA-uI-w6T" customClass="MyPostingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rhy-X9-bDx"/>
+                        <viewControllerLayoutGuide type="bottom" id="VMy-fW-9Iz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OgY-9B-TnR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IWF-iJ-yT7">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="YAA-uI-w6T" id="Edk-33-PWg"/>
+                                    <outlet property="delegate" destination="YAA-uI-w6T" id="e3Z-oy-mXo"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="IWF-iJ-yT7" secondAttribute="centerX" id="3v3-Cb-1mI"/>
+                            <constraint firstItem="IWF-iJ-yT7" firstAttribute="height" secondItem="OgY-9B-TnR" secondAttribute="height" id="XQd-Jn-oWb"/>
+                            <constraint firstItem="IWF-iJ-yT7" firstAttribute="width" secondItem="OgY-9B-TnR" secondAttribute="width" id="aT8-Ty-iGf"/>
+                            <constraint firstAttribute="centerY" secondItem="IWF-iJ-yT7" secondAttribute="centerY" id="g0I-qm-d3t"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cpx-21-Tuc"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="IWF-iJ-yT7" id="BgY-TD-Uia"/>
+                        <segue destination="sEj-f6-1Ii" kind="push" identifier="MyPostings_RequesterDetails" id="v7S-GB-xi6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XMV-0d-ZEC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1171" y="-526"/>
+        </scene>
+        <!--My Requests View Controller-->
+        <scene sceneID="WP5-EZ-xcR">
+            <objects>
+                <viewController id="7Jw-Za-48g" customClass="MyRequestsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p1R-mk-7rk"/>
+                        <viewControllerLayoutGuide type="bottom" id="EV2-9a-2TM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9oh-qU-CnX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SOW-lY-BDs">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="7Jw-Za-48g" id="G5s-ww-YF3"/>
+                                    <outlet property="delegate" destination="7Jw-Za-48g" id="qBb-gx-wJw"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="SOW-lY-BDs" id="9av-OD-IBY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cHi-Pi-luD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1169" y="114"/>
+        </scene>
+        <!--Requester Details View Controller-->
+        <scene sceneID="jNy-80-av1">
+            <objects>
+                <viewController id="sEj-f6-1Ii" customClass="RequesterDetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DOB-SF-3Mb"/>
+                        <viewControllerLayoutGuide type="bottom" id="Sj0-BR-Yvs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G9E-DV-Cne">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Call" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAb-MD-d7k">
+                                <rect key="frame" x="16" y="73" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVt-jP-gMe">
+                                <rect key="frame" x="91" y="69" width="213" height="30"/>
+                                <state key="normal" title="+16072033776">
+                                    <color key="titleColor" red="0.12125485872783903" green="0.30626507852877949" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="call:" destination="sEj-f6-1Ii" eventType="touchUpInside" id="ceB-yQ-HkE"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="E-Mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHm-D0-0c6">
+                                <rect key="frame" x="16" y="110" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0A-bV-5bc">
+                                <rect key="frame" x="91" y="106" width="213" height="30"/>
+                                <state key="normal" title="cmanikishore@gmail.com">
+                                    <color key="titleColor" red="0.1212548587" green="0.30626507850000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="email:" destination="sEj-f6-1Ii" eventType="touchUpInside" id="1LU-i5-ErV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gcM-ID-PbT"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="callButton" destination="BVt-jP-gMe" id="j0c-fb-yVj"/>
+                        <outlet property="emailButton" destination="c0A-bV-5bc" id="ziH-z1-Lri"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RQF-N0-z3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1576" y="-526"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="Quq-eE-lI5">
@@ -527,11 +660,53 @@
                         <outlet property="tableView" destination="JKr-bz-bqx" id="b7Z-k2-AVl"/>
                         <segue destination="8mo-Wj-0bC" kind="custom" identifier="SideMenu_Home" customClass="SWRevealViewControllerSegue" id="odd-tK-Rbi"/>
                         <segue destination="vXZ-lx-hvc" kind="custom" identifier="SideMenu_Login" customClass="SWRevealViewControllerSegue" id="S0C-0p-voj"/>
+                        <segue destination="YAA-uI-w6T" kind="custom" identifier="SideMenu_MyPostings" customClass="SWRevealViewControllerSegue" id="OWc-Oq-0wh"/>
+                        <segue destination="7Jw-Za-48g" kind="custom" identifier="SideMenu_MyRequests" customClass="SWRevealViewControllerSegue" id="xCC-qp-0Vf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLz-Ho-DsP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-6.9333333333333336" y="-48.280000000000001"/>
+        </scene>
+        <!--My Postings View Controller-->
+        <scene sceneID="yst-QC-VvT">
+            <objects>
+                <viewController id="Wau-hk-jk1" customClass="MyPostingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kLF-7h-gJm"/>
+                        <viewControllerLayoutGuide type="bottom" id="5OU-Lz-8R5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ltH-CN-OAu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VL4-it-fnB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Wau-hk-jk1" id="d1p-zw-b6e"/>
+                                    <outlet property="delegate" destination="Wau-hk-jk1" id="vjP-c0-e75"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VL4-it-fnB" firstAttribute="height" secondItem="ltH-CN-OAu" secondAttribute="height" id="34c-Os-Oh5"/>
+                            <constraint firstItem="VL4-it-fnB" firstAttribute="width" secondItem="ltH-CN-OAu" secondAttribute="width" id="KtR-3W-5h8"/>
+                            <constraint firstAttribute="centerX" secondItem="VL4-it-fnB" secondAttribute="centerX" id="gcc-4N-uWY"/>
+                            <constraint firstAttribute="centerY" secondItem="VL4-it-fnB" secondAttribute="centerY" id="s2u-BF-nsS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eYh-jw-tSD"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="VL4-it-fnB" id="0Xk-qe-kCp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Wb-K8-UyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1171" y="-526"/>
         </scene>
     </scenes>
     <resources>

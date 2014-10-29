@@ -25,6 +25,10 @@
     self.tableView.scrollEnabled   = NO;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 6;
@@ -78,10 +82,10 @@
             [self performSegueWithIdentifier:@"SideMenu_Home" sender:self];
             break;
         case 1:
-            [self performSegueWithIdentifier:@"queue" sender:self];
+            [self performSegueWithIdentifier:@"SideMenu_MyPostings" sender:self];
             break;
         case 2:
-            [self performSegueWithIdentifier:@"friendsList" sender:self];
+            [self performSegueWithIdentifier:@"SideMenu_MyRequests" sender:self];
             break;
         case 3:
             [self performSegueWithIdentifier:@"privateParty" sender:self];

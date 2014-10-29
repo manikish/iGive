@@ -11,5 +11,7 @@
 @interface PostingTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet PFImageView *postThumbnail;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *requestedLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 
 @end

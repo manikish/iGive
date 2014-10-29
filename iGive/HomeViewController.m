@@ -88,6 +88,11 @@
     PFFile *imageFile = [post objectForKey:@"imageFile"];
     [cell.postThumbnail setFile:imageFile];
     [cell.postThumbnail loadInBackground];
+    if ([[post objectForKey:@"isRequested"]boolValue]) {
+        cell.userInteractionEnabled = NO;
+        cell.requestedLabel.hidden = NO;
+        cell.arrowImageView.hidden = YES;
+    }
     return cell;
 }
 
@@ -95,6 +100,7 @@
 {
     viewPost = [postsArray objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"Postings_ViewPost" sender:self];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (IBAction)give:(id)sender {
@@ -108,14 +114,5 @@
         viewPostVC.post = viewPost;
     }
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -170,6 +170,7 @@
                 [post setObject:[PFFile fileWithName:@"image.jpg" data:imageData contentType:@"image/jpeg"] forKey:@"imageData"];
                 [post setObject:[GlobalData sharedGlobalData].selectedLocationGeoPoint forKey:@"geoLocation"];
                 [post setObject:[PFUser currentUser] forKey:@"user"];
+                [post setObject:@false forKey:@"isRequested"];
                 [MBProgressHUD showHUDAddedTo:self.view animated:YES];
                 [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
