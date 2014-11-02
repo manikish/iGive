@@ -100,6 +100,18 @@
                                 [self.navigationController popToViewController:viewController animated:YES];
                             }
                         }
+                        
+                        PFQuery *query = [PFInstallation query];
+                        [query whereKey:@"user" equalTo:[self.post objectForKey:@"user"]];
+                        PFPush *push = [[PFPush alloc] init];
+                        [push setQuery:query];
+                        NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                                              [NSString stringWithFormat:@"%@ has requested your item with name %@ on iGive",name,[self.post objectForKey:@"title"]], @"alert",
+                                              @"Increment",@"badge",
+                                              @"",@"sound",nil];
+                        [push setData:data];
+                        [push sendPushInBackground];
+
                         [self.post setObject:@"true" forKey:@"isRequested"];
                         [self.post saveInBackground];
                     }

@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -122,7 +123,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="73A-BZ-Mzl"/>
-                                    <constraint firstAttribute="width" constant="300" id="fcR-jU-Sw6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -172,6 +172,7 @@
                             <constraint firstItem="b8G-aS-v81" firstAttribute="top" secondItem="ZSs-sl-gFY" secondAttribute="bottom" constant="10" id="jkg-Di-Of7"/>
                             <constraint firstItem="AfH-Rd-neL" firstAttribute="width" secondItem="DKQ-0W-DoO" secondAttribute="width" id="nXz-DY-KXa"/>
                             <constraint firstAttribute="centerX" secondItem="ZSs-sl-gFY" secondAttribute="centerX" id="neW-24-sIh"/>
+                            <constraint firstItem="ZSs-sl-gFY" firstAttribute="leading" secondItem="cwz-cv-UNG" secondAttribute="leadingMargin" constant="-6" id="xL9-p9-FGf"/>
                             <constraint firstItem="BoJ-hX-ihW" firstAttribute="top" secondItem="AfH-Rd-neL" secondAttribute="bottom" constant="28" id="zLE-4b-hr6"/>
                         </constraints>
                     </view>
@@ -295,7 +296,6 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="EeQ-i2-l6H"/>
-                                                    <constraint firstAttribute="width" constant="280" id="xcw-GO-JdY"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -304,12 +304,8 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmQ-p4-zg6">
-                                                <rect key="frame" x="35" y="87" width="250" height="250"/>
+                                                <rect key="frame" x="20" y="87" width="280" height="250"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="250" id="9AM-Wj-AUM"/>
-                                                    <constraint firstAttribute="height" constant="250" id="fqX-cR-fRk"/>
-                                                </constraints>
                                                 <state key="normal" title="How does it look like?">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -347,14 +343,17 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="LPn-NM-SaQ" firstAttribute="top" secondItem="wbu-uk-alP" secondAttribute="bottom" constant="20" id="1QE-5s-Ghw"/>
+                                            <constraint firstAttribute="trailing" secondItem="qHn-Os-doB" secondAttribute="trailing" constant="20" id="2CU-IP-2vj"/>
                                             <constraint firstItem="qHn-Os-doB" firstAttribute="top" secondItem="1gA-Ef-Lva" secondAttribute="top" constant="17" id="2L7-1F-N3x"/>
+                                            <constraint firstItem="wbu-uk-alP" firstAttribute="width" secondItem="dmQ-p4-zg6" secondAttribute="width" id="8Ux-Yd-PjT"/>
+                                            <constraint firstItem="qHn-Os-doB" firstAttribute="leading" secondItem="1gA-Ef-Lva" secondAttribute="leading" constant="20" id="BK9-KI-cP7"/>
                                             <constraint firstAttribute="centerX" secondItem="dmQ-p4-zg6" secondAttribute="centerX" id="Ev3-fY-P04"/>
                                             <constraint firstItem="wbu-uk-alP" firstAttribute="height" secondItem="LPn-NM-SaQ" secondAttribute="height" id="Mou-n8-RCv"/>
                                             <constraint firstItem="wbu-uk-alP" firstAttribute="centerX" secondItem="qHn-Os-doB" secondAttribute="centerX" id="SAe-B6-hXO"/>
                                             <constraint firstItem="dmQ-p4-zg6" firstAttribute="top" secondItem="qHn-Os-doB" secondAttribute="bottom" constant="20" id="T2s-Bi-WFo"/>
                                             <constraint firstAttribute="centerX" secondItem="qHn-Os-doB" secondAttribute="centerX" id="Uek-T4-PvM"/>
                                             <constraint firstItem="wbu-uk-alP" firstAttribute="centerX" secondItem="LPn-NM-SaQ" secondAttribute="centerX" id="Zh0-28-HtI"/>
-                                            <constraint firstAttribute="height" constant="568" id="aAa-LI-Ygb"/>
                                             <constraint firstAttribute="bottom" secondItem="LPn-NM-SaQ" secondAttribute="bottom" constant="82" id="bHM-pB-598"/>
                                             <constraint firstItem="wbu-uk-alP" firstAttribute="width" secondItem="qHn-Os-doB" secondAttribute="width" id="nFW-Qm-vIn"/>
                                             <constraint firstItem="wbu-uk-alP" firstAttribute="top" secondItem="dmQ-p4-zg6" secondAttribute="bottom" constant="29" id="o2c-PS-NkM"/>
@@ -378,6 +377,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="h0E-N7-JaW" secondAttribute="trailing" id="EhP-Ix-G33"/>
                             <constraint firstItem="h0E-N7-JaW" firstAttribute="leading" secondItem="yl3-6i-wen" secondAttribute="leading" id="cyY-WC-q6o"/>
+                            <constraint firstAttribute="height" secondItem="1gA-Ef-Lva" secondAttribute="height" id="nSb-LX-97y"/>
                             <constraint firstItem="7T1-yy-tCV" firstAttribute="top" secondItem="h0E-N7-JaW" secondAttribute="bottom" id="tVC-P9-etX"/>
                             <constraint firstItem="h0E-N7-JaW" firstAttribute="top" secondItem="yl3-6i-wen" secondAttribute="top" id="yLs-Ek-r5M"/>
                             <constraint firstItem="1gA-Ef-Lva" firstAttribute="width" secondItem="yl3-6i-wen" secondAttribute="width" id="zWz-a3-rKF"/>
@@ -418,7 +418,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="IWF-iJ-yT7" secondAttribute="centerX" id="3v3-Cb-1mI"/>
                             <constraint firstItem="IWF-iJ-yT7" firstAttribute="height" secondItem="OgY-9B-TnR" secondAttribute="height" id="XQd-Jn-oWb"/>
@@ -449,7 +449,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SOW-lY-BDs">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="SOW-lY-BDs">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -459,7 +459,13 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="SOW-lY-BDs" secondAttribute="centerX" id="CsH-ni-8Zz"/>
+                            <constraint firstAttribute="width" secondItem="SOW-lY-BDs" secondAttribute="width" id="blg-ce-nQb"/>
+                            <constraint firstAttribute="height" secondItem="SOW-lY-BDs" secondAttribute="height" id="uTY-N4-ljo"/>
+                            <constraint firstAttribute="centerY" secondItem="SOW-lY-BDs" secondAttribute="centerY" id="uZm-uN-ohp"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
@@ -540,22 +546,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar hidden="YES" contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0zb-EF-EBv">
+                            <searchBar hidden="YES" contentMode="redraw" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0zb-EF-EBv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="ujk-d0-3qZ" id="k7x-fh-ITy"/>
                                 </connections>
                             </searchBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lHG-dU-Svz">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lHG-dU-Svz">
                                 <rect key="frame" x="0.0" y="44" width="320" height="473"/>
                                 <connections>
                                     <outlet property="delegate" destination="ujk-d0-3qZ" id="4Cy-Fi-95F"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9X-a7-U7p">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9X-a7-U7p">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.18089322599999999" green="0.9781759511" blue="0.53591062909999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="uBE-OS-pVy"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -567,6 +576,17 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lHG-dU-Svz" firstAttribute="centerX" secondItem="F9X-a7-U7p" secondAttribute="centerX" id="0ES-bY-clc"/>
+                            <constraint firstItem="F9X-a7-U7p" firstAttribute="top" secondItem="lHG-dU-Svz" secondAttribute="bottom" constant="1" id="7lK-vY-1bp"/>
+                            <constraint firstItem="0zb-EF-EBv" firstAttribute="width" secondItem="8I9-zg-n3d" secondAttribute="width" id="8fi-z0-lfO"/>
+                            <constraint firstAttribute="centerX" secondItem="lHG-dU-Svz" secondAttribute="centerX" id="IJf-zY-doh"/>
+                            <constraint firstItem="lHG-dU-Svz" firstAttribute="width" secondItem="8I9-zg-n3d" secondAttribute="width" id="evd-Dm-W9S"/>
+                            <constraint firstItem="lHG-dU-Svz" firstAttribute="top" secondItem="0zb-EF-EBv" secondAttribute="bottom" id="s1L-ZH-p8f"/>
+                            <constraint firstItem="lHG-dU-Svz" firstAttribute="width" secondItem="F9X-a7-U7p" secondAttribute="width" id="w9m-22-gHR"/>
+                            <constraint firstAttribute="centerX" secondItem="0zb-EF-EBv" secondAttribute="centerX" id="y4L-oO-kcI"/>
+                            <constraint firstItem="6hG-o1-qAB" firstAttribute="top" secondItem="F9X-a7-U7p" secondAttribute="bottom" id="zqu-yO-A1H"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bIY-o8-SSt"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -642,8 +662,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JKr-bz-bqx">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="567"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JKr-bz-bqx">
+                                <rect key="frame" x="0.0" y="-0.5" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -654,6 +674,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" secondItem="JKr-bz-bqx" secondAttribute="height" id="1Es-HE-6DM"/>
+                            <constraint firstAttribute="centerY" secondItem="JKr-bz-bqx" secondAttribute="centerY" constant="0.5" id="SqO-7k-B3L"/>
+                            <constraint firstAttribute="centerX" secondItem="JKr-bz-bqx" secondAttribute="centerX" id="X3Q-VO-7KE"/>
+                            <constraint firstAttribute="width" secondItem="JKr-bz-bqx" secondAttribute="width" id="ju7-xK-WBI"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>

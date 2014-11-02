@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.title = @"My Postings";
     [self fetchPosts];
 }
 
@@ -40,8 +41,19 @@
     PFQuery *fetchPosts = [PFQuery queryWithClassName:@"Posts"];
     [fetchPosts whereKey:@"user" equalTo:[PFUser currentUser]];
     [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        postsArray = [[NSMutableArray alloc]initWithArray:objects];
-        [self.tableView reloadData];
+        if ([objects count]>0) {
+            postsArray = [[NSMutableArray alloc]initWithArray:objects];
+            self.tableView.hidden = NO;
+            [self.tableView reloadData];
+        }else{
+            UILabel *noPostsLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+100.0, self.view.frame.size.width, 21.0)];
+            [noPostsLabel setText:@"You have not posted yet"];
+            noPostsLabel.textAlignment = NSTextAlignmentCenter;
+            noPostsLabel.textColor = [UIColor blackColor];
+            [self.view addSubview:noPostsLabel];
+            self.tableView.hidden = YES;
+            [self.view bringSubviewToFront:noPostsLabel];
+        }
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     }];
 }

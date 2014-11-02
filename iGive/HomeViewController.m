@@ -55,8 +55,19 @@
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     PFQuery *fetchPosts = [PFQuery queryWithClassName:@"Posts"];
     [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        postsArray = objects;
-        [self.tableView reloadData];
+        if ([objects count] >0) {
+            postsArray = objects;
+            self.tableView.hidden = NO;
+            [self.tableView reloadData];
+        }else{
+            UILabel *noPostsLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+100.0, self.view.frame.size.width, 21.0)];
+            [noPostsLabel setText:@"No one posted yet. Post One"];
+            noPostsLabel.textAlignment = NSTextAlignmentCenter;
+            noPostsLabel.textColor = [UIColor blackColor];
+            [self.view addSubview:noPostsLabel];
+            self.tableView.hidden = YES;
+            [self.view bringSubviewToFront:noPostsLabel];
+        }
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     }];
 

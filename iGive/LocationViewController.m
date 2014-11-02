@@ -37,7 +37,6 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchLocations)];
     
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:searchButton,nil];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated

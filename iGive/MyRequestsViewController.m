@@ -23,6 +23,7 @@
     [super viewDidLoad];
     postsArray = [[NSMutableArray alloc]init];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.title = @"My Requests";
     [self fetchPosts];
 }
 
@@ -33,8 +34,19 @@
     [fetchPosts whereKey:@"requester" equalTo:[PFUser currentUser]];
     [fetchPosts includeKey:@"requestedPost"];
     [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        postsArray = [[NSMutableArray alloc]initWithArray:objects];
-        [self.tableView reloadData];
+        if ([objects count]>0) {
+            postsArray = [[NSMutableArray alloc]initWithArray:objects];
+            self.tableView.hidden = NO;
+            [self.tableView reloadData];
+        }else{
+            UILabel *noPostsLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+100.0, self.view.frame.size.width, 21.0)];
+            [noPostsLabel setText:@"You have not requested any item"];
+            noPostsLabel.textAlignment = NSTextAlignmentCenter;
+            noPostsLabel.textColor = [UIColor blackColor];
+            [self.view addSubview:noPostsLabel];
+            self.tableView.hidden = YES;
+            [self.view bringSubviewToFront:noPostsLabel];
+        }
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     }];
 }
