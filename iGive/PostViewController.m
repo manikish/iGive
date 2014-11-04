@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *imageUploadButton;
 @property (nonatomic) UIImagePickerController *imagePickerController;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIButton *locationButton;
 
 @end
 
@@ -31,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.imagePickerController = [[UIImagePickerController alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +54,17 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self registerForKeyboardNotifications];
+    if ([GlobalData sharedGlobalData].selectedLocationGeoPoint!= nil) {
+        CLLocation *location = [[CLLocation alloc]initWithLatitude:[GlobalData sharedGlobalData].selectedLocationGeoPoint.latitude longitude:[GlobalData sharedGlobalData].selectedLocationGeoPoint.longitude];
+        CLGeocoder *geoCoder = [[CLGeocoder alloc]init];
+        [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            CLPlacemark *placemark  = [placemarks firstObject];
+            NSDictionary *addressDictionary = placemark.addressDictionary;
+            [self.locationButton setTitle:[addressDictionary objectForKey:@"Name"] forState:UIControlStateNormal];
+        }];
+    }
 }
+
 - (void)registerForKeyboardNotifications
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -131,11 +142,9 @@
         imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
         imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePickerController.delegate = self;
-        imagePickerController.showsCameraControls = NO;
         imagePickerController.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeImage, nil];
-        imagePickerController.videoQuality = UIImagePickerControllerQualityTypeMedium;
-        imagePickerController.videoMaximumDuration = 15.0;
-        imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+//        imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         
         self.imagePickerController = imagePickerController;
         [self presentViewController:self.imagePickerController animated:YES completion:nil];
@@ -155,8 +164,9 @@
         imageToUpload = originalImage;
     }
     imageData = UIImageJPEGRepresentation(imageToUpload, 0.0);
-    [self.imageUploadButton setBackgroundImage:imageToUpload forState:UIControlStateNormal];
-
+    [self.imageUploadButton setImage:imageToUpload forState:UIControlStateNormal];
+//    [self.imageUploadButton setBackgroundImage:imageToUpload forState:UIControlStateNormal];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 - (IBAction)getLocationToCollect:(id)sender {
     [self performSegueWithIdentifier:@"Post_Location" sender:self];

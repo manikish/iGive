@@ -31,8 +31,7 @@
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
-    
-
+//    [self.view setBackgroundColor:[UIColor colorWithRed:49.0/255.0 green:253.0/255.0 blue:118.0/255.0 alpha:1.0]];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -66,7 +65,6 @@
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
-
 }
 
 - (void)saveUserDetails

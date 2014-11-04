@@ -32,8 +32,10 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingLocation];
     
+    self.mkMapView.showsUserLocation = YES;
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchLocations)];
     
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:searchButton,nil];
@@ -41,7 +43,22 @@ static NSString *kCellIdentifier = @"cellIdentifier";
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+    if ([GlobalData sharedGlobalData].selectedLocationGeoPoint!= nil) {
+        CLLocation *location = [[CLLocation alloc]initWithLatitude:[GlobalData sharedGlobalData].selectedLocationGeoPoint.latitude longitude:[GlobalData sharedGlobalData].selectedLocationGeoPoint.longitude];
+        CLGeocoder *geoCoder = [[CLGeocoder alloc]init];
+        [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            CLPlacemark *placemark  = [placemarks firstObject];
+            NSDictionary *addressDictionary = placemark.addressDictionary;
+            
+            PlaceAnnotation *annotation = [[PlaceAnnotation alloc]init];
+            annotation.title = [addressDictionary objectForKey:@"Name"];
+            annotation.coordinate = location.coordinate;
+            [self.mkMapView removeAnnotations:self.mkMapView.annotations];
+            [self.mkMapView addAnnotation:annotation];
+            [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:YES];
+            self.mkMapView.centerCoordinate = location.coordinate;
+        }];
+    }
 }
 - (void)searchLocations
 {
@@ -181,6 +198,23 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     // remember for later the user's current location
     self.userLocation = newLocation.coordinate;
     
+    if ([GlobalData sharedGlobalData].selectedLocationGeoPoint== nil) {
+        CLGeocoder *geoCoder = [[CLGeocoder alloc]init];
+        [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+            CLPlacemark *placemark  = [placemarks firstObject];
+            NSDictionary *addressDictionary = placemark.addressDictionary;
+            
+            PlaceAnnotation *annotation = [[PlaceAnnotation alloc]init];
+            annotation.title = [addressDictionary objectForKey:@"Name"];
+            annotation.coordinate = newLocation.coordinate;
+            [self.mkMapView removeAnnotations:self.mkMapView.annotations];
+            [self.mkMapView addAnnotation:annotation];
+            [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:YES];
+            self.mkMapView.centerCoordinate = newLocation.coordinate;
+        }];
+        [GlobalData sharedGlobalData].selectedLocationGeoPoint = [PFGeoPoint geoPointWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude];
+    }
+
     [manager stopUpdatingLocation]; // we only want one update
     
     manager.delegate = nil;         // we might be called again here, even though we
@@ -191,7 +225,6 @@ static NSString *kCellIdentifier = @"cellIdentifier";
 {
     PlaceAnnotation *selectedPlaceAnnotation = view.annotation;
     [GlobalData sharedGlobalData].selectedLocationGeoPoint = [PFGeoPoint geoPointWithLatitude:selectedPlaceAnnotation.coordinate.latitude longitude:selectedPlaceAnnotation.coordinate.longitude];
-    NSLog(@"%f %f",[GlobalData sharedGlobalData].selectedLocationGeoPoint.latitude,[GlobalData sharedGlobalData].selectedLocationGeoPoint.longitude);
 }
 
 - (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation {
@@ -210,17 +243,31 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     return pin;
 }
 
-//- (void)mapView:(MKMapView *)mapView
-// annotationView:(MKAnnotationView *)annotationView
-//didChangeDragState:(MKAnnotationViewDragState)newState
-//   fromOldState:(MKAnnotationViewDragState)oldState
-//{
-//    if (newState == MKAnnotationViewDragStateEnding)
-//    {
-//        CLLocationCoordinate2D droppedAt = annotationView.annotation.coordinate;
-//        [GlobalData sharedGlobalData].selectedLocationGeoPoint = [PFGeoPoint geoPointWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
-//    }
-//}
+- (void)mapView:(MKMapView *)mapView
+ annotationView:(MKAnnotationView *)annotationView
+didChangeDragState:(MKAnnotationViewDragState)newState
+   fromOldState:(MKAnnotationViewDragState)oldState
+{
+    if (newState == MKAnnotationViewDragStateEnding)
+    {
+        CLLocationCoordinate2D droppedAt = annotationView.annotation.coordinate;
+        
+        CLLocation *location = [[CLLocation alloc]initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
+        CLGeocoder *geoCoder = [[CLGeocoder alloc]init];
+        [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            CLPlacemark *placemark  = [placemarks firstObject];
+            NSDictionary *addressDictionary = placemark.addressDictionary;
+            
+            PlaceAnnotation *annotation = (PlaceAnnotation *)annotationView.annotation;
+            annotation.title = [addressDictionary objectForKey:@"Name"];
+            annotation.coordinate = droppedAt;
+            [self.mkMapView removeAnnotations:self.mkMapView.annotations];
+            [self.mkMapView addAnnotation:annotation];
+            [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:YES];
+        }];
+        [GlobalData sharedGlobalData].selectedLocationGeoPoint = [PFGeoPoint geoPointWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
+    }
+}
 
 /*
 #pragma mark - Navigation

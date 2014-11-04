@@ -40,6 +40,10 @@
 		3C2B06F319E0C82C00E33B47 /* Home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B06ED19E0C82B00E33B47 /* Home@2x.png */; };
 		3C2B06F419E0C82C00E33B47 /* Logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B06EE19E0C82B00E33B47 /* Logout@2x.png */; };
 		3C2B06F519E0C82C00E33B47 /* Postings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B06EF19E0C82C00E33B47 /* Postings@2x.png */; };
+		3C39BBA01A087C620069D1DA /* loginScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C39BB9F1A087C620069D1DA /* loginScreen.png */; };
+		3C39BBA21A0882210069D1DA /* evernote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C39BBA11A0882210069D1DA /* evernote.png */; };
+		3C39BBA51A088E140069D1DA /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C39BBA41A088E140069D1DA /* HelpViewController.m */; };
+		3C39BBA81A088F3F0069D1DA /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C39BBA71A088F3F0069D1DA /* ContactUsViewController.m */; };
 		3C4B099619DF5223004A0E61 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B099519DF5223004A0E61 /* PostViewController.m */; };
 		3C783C4819DC5600007C8951 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C783C4719DC5600007C8951 /* SWRevealViewController.m */; };
 		3C783C4E19DC5DBC007C8951 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C783C4D19DC5DBC007C8951 /* LoginViewController.m */; };
@@ -115,6 +119,12 @@
 		3C2B06ED19E0C82B00E33B47 /* Home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Home@2x.png"; path = "iGive/Resources/Home@2x.png"; sourceTree = "<group>"; };
 		3C2B06EE19E0C82B00E33B47 /* Logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logout@2x.png"; path = "iGive/Resources/Logout@2x.png"; sourceTree = "<group>"; };
 		3C2B06EF19E0C82C00E33B47 /* Postings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Postings@2x.png"; path = "iGive/Resources/Postings@2x.png"; sourceTree = "<group>"; };
+		3C39BB9F1A087C620069D1DA /* loginScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginScreen.png; sourceTree = "<group>"; };
+		3C39BBA11A0882210069D1DA /* evernote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evernote.png; sourceTree = "<group>"; };
+		3C39BBA31A088E140069D1DA /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		3C39BBA41A088E140069D1DA /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		3C39BBA61A088F3F0069D1DA /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
+		3C39BBA71A088F3F0069D1DA /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
 		3C4B099419DF5223004A0E61 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		3C4B099519DF5223004A0E61 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		3C783C4619DC5600007C8951 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = iGive/SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
@@ -290,6 +300,8 @@
 		3C783C4B19DC5CCD007C8951 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3C39BBA11A0882210069D1DA /* evernote.png */,
+				3C39BB9F1A087C620069D1DA /* loginScreen.png */,
 				3CFD8F3719E8A4560090649C /* Location-Icon@2x.png */,
 				3CA7961719E739D3007CD625 /* Menu@2x.png */,
 				3C1320E019E5F76F00245E75 /* arrow_event@2x.png */,
@@ -333,6 +345,10 @@
 				3C9FABBD1A0005F1000A68F2 /* RequesterDetailsViewController.m */,
 				3C1A4DFF1A0069290041D9C0 /* MyRequestsViewController.h */,
 				3C1A4E001A0069290041D9C0 /* MyRequestsViewController.m */,
+				3C39BBA31A088E140069D1DA /* HelpViewController.h */,
+				3C39BBA41A088E140069D1DA /* HelpViewController.m */,
+				3C39BBA61A088F3F0069D1DA /* ContactUsViewController.h */,
+				3C39BBA71A088F3F0069D1DA /* ContactUsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -397,6 +413,7 @@
 				TargetAttributes = {
 					3C24C8F519DBA12600A1E716 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = LQ7LQ7UKQH;
 					};
 					3C24C90E19DBA12600A1E716 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -435,7 +452,9 @@
 				3C783C5019DC6EAF007C8951 /* Sign-in-With-Facebook.png in Resources */,
 				3C2B06F519E0C82C00E33B47 /* Postings@2x.png in Resources */,
 				3CA7961819E739D3007CD625 /* Menu@2x.png in Resources */,
+				3C39BBA01A087C620069D1DA /* loginScreen.png in Resources */,
 				3C2B06F419E0C82C00E33B47 /* Logout@2x.png in Resources */,
+				3C39BBA21A0882210069D1DA /* evernote.png in Resources */,
 				3C24C90519DBA12600A1E716 /* Main.storyboard in Resources */,
 				3C24C90A19DBA12600A1E716 /* LaunchScreen.xib in Resources */,
 				3C24C90719DBA12600A1E716 /* Images.xcassets in Resources */,
@@ -493,6 +512,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C39BBA81A088F3F0069D1DA /* ContactUsViewController.m in Sources */,
 				3C9FABBE1A0005F1000A68F2 /* RequesterDetailsViewController.m in Sources */,
 				3CE1A86819DE07EE000DA60B /* GlobalData.m in Sources */,
 				3C1BF11819FE024A003957DA /* MyPostingsViewController.m in Sources */,
@@ -508,6 +528,7 @@
 				3CA7961619E7331F007CD625 /* NavigationController.m in Sources */,
 				3C783C4819DC5600007C8951 /* SWRevealViewController.m in Sources */,
 				3CFD8F3619E8A0A00090649C /* RequestContactViewController.m in Sources */,
+				3C39BBA51A088E140069D1DA /* HelpViewController.m in Sources */,
 				3CA7961319E72EF4007CD625 /* PlaceAnnotation.m in Sources */,
 				3C783C4E19DC5DBC007C8951 /* LoginViewController.m in Sources */,
 				3C2B06E919E0C22100E33B47 /* PostingTableViewCell.m in Sources */,
@@ -634,6 +655,7 @@
 			baseConfigurationReference = AB836077ABA90AA6F34593F9 /* Pods-iGive.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Mani/Documents/FacebookSDK,
@@ -651,6 +673,7 @@
 			baseConfigurationReference = F4DD62EF9CF1883FC24395B1 /* Pods-iGive.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Mani/Documents/FacebookSDK,

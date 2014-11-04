@@ -72,7 +72,6 @@
             break;
     }
     return cell;
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,10 +87,10 @@
             [self performSegueWithIdentifier:@"SideMenu_MyRequests" sender:self];
             break;
         case 3:
-            [self performSegueWithIdentifier:@"privateParty" sender:self];
+            [self performSegueWithIdentifier:@"SideMenu_ContactUs" sender:self];
             break;
         case 4:
-            [self performSegueWithIdentifier:@"aboutUs" sender:self];
+            [self performSegueWithIdentifier:@"SideMenu_Help" sender:self];
             break;
         case 5:
             [PFUser logOut];
