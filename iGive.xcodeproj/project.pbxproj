@@ -40,8 +40,6 @@
 		3C2B06F319E0C82C00E33B47 /* Home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B06ED19E0C82B00E33B47 /* Home@2x.png */; };
 		3C2B06F419E0C82C00E33B47 /* Logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B06EE19E0C82B00E33B47 /* Logout@2x.png */; };
 		3C2B06F519E0C82C00E33B47 /* Postings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B06EF19E0C82C00E33B47 /* Postings@2x.png */; };
-		3C39BBA01A087C620069D1DA /* loginScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C39BB9F1A087C620069D1DA /* loginScreen.png */; };
-		3C39BBA21A0882210069D1DA /* evernote.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C39BBA11A0882210069D1DA /* evernote.png */; };
 		3C39BBA51A088E140069D1DA /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C39BBA41A088E140069D1DA /* HelpViewController.m */; };
 		3C39BBA81A088F3F0069D1DA /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C39BBA71A088F3F0069D1DA /* ContactUsViewController.m */; };
 		3C4B099619DF5223004A0E61 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B099519DF5223004A0E61 /* PostViewController.m */; };
@@ -61,6 +59,7 @@
 		3CFD8F3319E8982B0090649C /* ViewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFD8F3219E8982B0090649C /* ViewPostViewController.m */; };
 		3CFD8F3619E8A0A00090649C /* RequestContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFD8F3519E8A0A00090649C /* RequestContactViewController.m */; };
 		3CFD8F3819E8A4560090649C /* Location-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CFD8F3719E8A4560090649C /* Location-Icon@2x.png */; };
+		3CFE852A1A096DAB001A93A9 /* janmabhoomilogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE85291A096DAB001A93A9 /* janmabhoomilogo.png */; };
 		C8DAC1399374B997897DB9FA /* libPods-iGive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61617AC2C530DBAB069B7B24 /* libPods-iGive.a */; };
 /* End PBXBuildFile section */
 
@@ -119,8 +118,6 @@
 		3C2B06ED19E0C82B00E33B47 /* Home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Home@2x.png"; path = "iGive/Resources/Home@2x.png"; sourceTree = "<group>"; };
 		3C2B06EE19E0C82B00E33B47 /* Logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logout@2x.png"; path = "iGive/Resources/Logout@2x.png"; sourceTree = "<group>"; };
 		3C2B06EF19E0C82C00E33B47 /* Postings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Postings@2x.png"; path = "iGive/Resources/Postings@2x.png"; sourceTree = "<group>"; };
-		3C39BB9F1A087C620069D1DA /* loginScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginScreen.png; sourceTree = "<group>"; };
-		3C39BBA11A0882210069D1DA /* evernote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evernote.png; sourceTree = "<group>"; };
 		3C39BBA31A088E140069D1DA /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3C39BBA41A088E140069D1DA /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		3C39BBA61A088F3F0069D1DA /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
@@ -154,6 +151,7 @@
 		3CFD8F3419E8A0A00090649C /* RequestContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestContactViewController.h; sourceTree = "<group>"; };
 		3CFD8F3519E8A0A00090649C /* RequestContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestContactViewController.m; sourceTree = "<group>"; };
 		3CFD8F3719E8A4560090649C /* Location-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Location-Icon@2x.png"; path = "iGive/Resources/Location-Icon@2x.png"; sourceTree = "<group>"; };
+		3CFE85291A096DAB001A93A9 /* janmabhoomilogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = janmabhoomilogo.png; sourceTree = "<group>"; };
 		61617AC2C530DBAB069B7B24 /* libPods-iGive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iGive.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB836077ABA90AA6F34593F9 /* Pods-iGive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iGive/Pods-iGive.debug.xcconfig"; sourceTree = "<group>"; };
 		F4DD62EF9CF1883FC24395B1 /* Pods-iGive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iGive.release.xcconfig"; path = "Pods/Target Support Files/Pods-iGive/Pods-iGive.release.xcconfig"; sourceTree = "<group>"; };
@@ -300,8 +298,7 @@
 		3C783C4B19DC5CCD007C8951 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3C39BBA11A0882210069D1DA /* evernote.png */,
-				3C39BB9F1A087C620069D1DA /* loginScreen.png */,
+				3CFE85291A096DAB001A93A9 /* janmabhoomilogo.png */,
 				3CFD8F3719E8A4560090649C /* Location-Icon@2x.png */,
 				3CA7961719E739D3007CD625 /* Menu@2x.png */,
 				3C1320E019E5F76F00245E75 /* arrow_event@2x.png */,
@@ -452,13 +449,12 @@
 				3C783C5019DC6EAF007C8951 /* Sign-in-With-Facebook.png in Resources */,
 				3C2B06F519E0C82C00E33B47 /* Postings@2x.png in Resources */,
 				3CA7961819E739D3007CD625 /* Menu@2x.png in Resources */,
-				3C39BBA01A087C620069D1DA /* loginScreen.png in Resources */,
 				3C2B06F419E0C82C00E33B47 /* Logout@2x.png in Resources */,
-				3C39BBA21A0882210069D1DA /* evernote.png in Resources */,
 				3C24C90519DBA12600A1E716 /* Main.storyboard in Resources */,
 				3C24C90A19DBA12600A1E716 /* LaunchScreen.xib in Resources */,
 				3C24C90719DBA12600A1E716 /* Images.xcassets in Resources */,
 				3C2B06F019E0C82C00E33B47 /* About-Us@2x.png in Resources */,
+				3CFE852A1A096DAB001A93A9 /* janmabhoomilogo.png in Resources */,
 				3C2B06F119E0C82C00E33B47 /* Contact@2x.png in Resources */,
 				3CFD8F3819E8A4560090649C /* Location-Icon@2x.png in Resources */,
 				3C2B06F219E0C82C00E33B47 /* Help@2x.png in Resources */,

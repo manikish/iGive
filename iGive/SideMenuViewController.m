@@ -27,6 +27,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showHome) name:@"showHome" object:nil];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -101,6 +102,10 @@
     }
 }
 
+- (void)showHome
+{
+    [self performSegueWithIdentifier:@"SideMenu_Home" sender:self];
+}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {

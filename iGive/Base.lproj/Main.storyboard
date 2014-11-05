@@ -55,7 +55,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfd-Iv-EVd">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
-                                <color key="backgroundColor" red="0.18089322602181773" green="0.97817595108695654" blue="0.53591062913951093" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.1803921568627451" green="0.97647058823529409" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Mtc-wE-jG6"/>
                                 </constraints>
@@ -327,7 +327,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbu-uk-alP">
-                                                <rect key="frame" x="20" y="366" width="280" height="50"/>
+                                                <rect key="frame" x="20" y="362" width="280" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="-117" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -343,7 +343,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="LPn-NM-SaQ" firstAttribute="top" secondItem="wbu-uk-alP" secondAttribute="bottom" constant="20" id="1QE-5s-Ghw"/>
+                                            <constraint firstItem="LPn-NM-SaQ" firstAttribute="top" secondItem="wbu-uk-alP" secondAttribute="bottom" constant="24" id="1QE-5s-Ghw"/>
                                             <constraint firstAttribute="trailing" secondItem="qHn-Os-doB" secondAttribute="trailing" constant="20" id="2CU-IP-2vj"/>
                                             <constraint firstItem="qHn-Os-doB" firstAttribute="top" secondItem="1gA-Ef-Lva" secondAttribute="top" constant="17" id="2L7-1F-N3x"/>
                                             <constraint firstItem="wbu-uk-alP" firstAttribute="width" secondItem="dmQ-p4-zg6" secondAttribute="width" id="8Ux-Yd-PjT"/>
@@ -356,7 +356,7 @@
                                             <constraint firstItem="wbu-uk-alP" firstAttribute="centerX" secondItem="LPn-NM-SaQ" secondAttribute="centerX" id="Zh0-28-HtI"/>
                                             <constraint firstAttribute="bottom" secondItem="LPn-NM-SaQ" secondAttribute="bottom" constant="82" id="bHM-pB-598"/>
                                             <constraint firstItem="wbu-uk-alP" firstAttribute="width" secondItem="qHn-Os-doB" secondAttribute="width" id="nFW-Qm-vIn"/>
-                                            <constraint firstItem="wbu-uk-alP" firstAttribute="top" secondItem="dmQ-p4-zg6" secondAttribute="bottom" constant="29" id="o2c-PS-NkM"/>
+                                            <constraint firstItem="wbu-uk-alP" firstAttribute="top" secondItem="dmQ-p4-zg6" secondAttribute="bottom" constant="25" id="o2c-PS-NkM"/>
                                             <constraint firstItem="wbu-uk-alP" firstAttribute="height" secondItem="qHn-Os-doB" secondAttribute="height" id="tSx-DN-lVV"/>
                                             <constraint firstItem="wbu-uk-alP" firstAttribute="width" secondItem="LPn-NM-SaQ" secondAttribute="width" id="tT7-tX-NPl"/>
                                         </constraints>
@@ -508,7 +508,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="It4-TW-3X0">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="It4-TW-3X0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4h-UF-phm">
@@ -521,7 +521,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="uXU-NP-4wh"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="uUt-Sa-Sfg" id="0R2-M0-1Wx"/>
                                                 </connections>
@@ -530,7 +530,7 @@
                                                 <rect key="frame" x="10" y="70" width="300" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="uUt-Sa-Sfg" id="hbD-ts-Iwi"/>
                                                 </connections>
@@ -539,7 +539,7 @@
                                                 <rect key="frame" x="10" y="130" width="300" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="uUt-Sa-Sfg" id="HZM-kW-IdR"/>
                                                 </connections>
@@ -548,7 +548,7 @@
                                                 <rect key="frame" x="10" y="190" width="300" height="240"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="uUt-Sa-Sfg" id="7MW-Qj-kbT"/>
                                                 </connections>
@@ -559,6 +559,9 @@
                                                 <state key="normal" title="Submit">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="submit:" destination="uUt-Sa-Sfg" eventType="touchUpInside" id="sxf-u8-fgb"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -586,6 +589,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="P4h-UF-phm" secondAttribute="bottom" id="EaI-ec-5qo"/>
                                     <constraint firstItem="P4h-UF-phm" firstAttribute="leading" secondItem="It4-TW-3X0" secondAttribute="leading" id="VF5-WA-SuZ"/>
@@ -605,6 +609,14 @@
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="bgView" destination="P4h-UF-phm" id="rvL-Qo-yCQ"/>
+                        <outlet property="emailTextField" destination="CMw-yY-r6W" id="2ow-pA-hmd"/>
+                        <outlet property="messageTextView" destination="1FN-qi-R4K" id="mMJ-CR-C1t"/>
+                        <outlet property="nameTextField" destination="rqz-1H-LMs" id="H5G-Uj-mVZ"/>
+                        <outlet property="phoneNumberTextField" destination="gXg-ca-rST" id="zHr-Nl-YNS"/>
+                        <outlet property="scrollView" destination="It4-TW-3X0" id="ghy-Sv-ROt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Py-Tv-N6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -882,8 +894,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="KHD-vv-eF5"/>
         <segue reference="S0C-0p-voj"/>
+        <segue reference="odd-tK-Rbi"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 </document>
