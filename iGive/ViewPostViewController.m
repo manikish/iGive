@@ -7,11 +7,16 @@
 //
 
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
 #import "ViewPostViewController.h"
 #import "RequestContactViewController.h"
 
 @interface ViewPostViewController ()
+{
+    CLLocation *location;
+    NSString *locationName;
+}
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *postImageView;
 @property (weak, nonatomic) IBOutlet UIButton *locationDetailsButton;
@@ -28,12 +33,13 @@
     [self.postImageView loadInBackground];
     
     PFGeoPoint *geoPoint = [self.post objectForKey:@"geoLocation"];
-    CLLocation *location = [[CLLocation alloc]initWithLatitude:geoPoint.latitude longitude:geoPoint.longitude];
+    location = [[CLLocation alloc]initWithLatitude:geoPoint.latitude longitude:geoPoint.longitude];
     CLGeocoder *geoCoder = [[CLGeocoder alloc]init];
     [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark *placemark  = [placemarks firstObject];
         NSDictionary *addressDictionary = placemark.addressDictionary;
-        [self.locationDetailsButton setTitle:[addressDictionary objectForKey:@"Name"] forState:UIControlStateNormal];
+        locationName = [addressDictionary objectForKey:@"Name"];
+        [self.locationDetailsButton setTitle:locationName forState:UIControlStateNormal];
     }];
 //    PFUser *donor = [self.post objectForKey:@"user"];
 //    if ([[[PFUser currentUser] objectId]isEqualToString:[donor objectId]]) {
@@ -54,7 +60,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)locationDetails:(id)sender {
+    MKMapItem *item = [[MKMapItem alloc]initWithPlacemark:[[MKPlacemark alloc]initWithCoordinate:location.coordinate addressDictionary:nil]];
+    item.name = locationName;
+    [item openInMapsWithLaunchOptions:[NSDictionary dictionaryWithObjectsAndKeys:MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsDirectionsModeKey, nil]];
 }
 - (IBAction)requestContact:(id)sender {
     [self performSegueWithIdentifier:@"ViewPost_Request" sender:self];

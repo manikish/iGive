@@ -50,7 +50,7 @@
             cell.imageView.image = [UIImage imageNamed:@"Home.png"];
             break;
         case 1:
-            cell.textLabel.text = @"My Postings";
+            cell.textLabel.text = @"My Offerings";
             cell.imageView.image = [UIImage imageNamed:@"Postings.png"];
             break;
         case 2:

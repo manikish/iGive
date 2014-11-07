@@ -8,7 +8,7 @@
 
 #import "ParentViewController.h"
 
-@interface MyPostingsViewController : ParentViewController<UITableViewDataSource, UITableViewDelegate>
+@interface MyPostingsViewController : ParentViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

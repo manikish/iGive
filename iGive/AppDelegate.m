@@ -23,7 +23,20 @@
     [Parse setApplicationId:@"UJB076ErcMwlP6OeeGaq9whEHFKRYp7JB2pcrN8t"
                   clientKey:@"URPaKdwIWKLHltVrUTOB0DgdXFz6J14gK6cjvZRe"];
     [PFFacebookUtils initializeFacebook];
-
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    } else {
+        // Register for Push Notifications before iOS 8
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeAlert |
+                                                         UIRemoteNotificationTypeSound)];
+    }
 //    [PFFacebookUtils logInWithPermissions:nil block:^(PFUser *user, NSError *error) {
 //        if (!user) {
 //            NSLog(@"Uh oh. The user cancelled the Facebook login.");
@@ -34,6 +47,19 @@
 //        }
 //    }];
     return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+        [PFPush handlePush:userInfo];
+}
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current Installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

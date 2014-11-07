@@ -18,6 +18,7 @@
     NSMutableArray *postsArray;
     NSArray *requestsArray;
     PFObject *requesterPost;
+    NSIndexPath *indexPathUnFreeze;
 }
 @end
 
@@ -28,11 +29,42 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.title = @"My Postings";
     [self fetchPosts];
+    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 2.0;
+    lpgr.delegate = self;
+    [self.tableView addGestureRecognizer:lpgr];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    CGPoint p = [gestureRecognizer locationInView:self.tableView];
+    
+    indexPathUnFreeze = [self.tableView indexPathForRowAtPoint:p];
+    if (indexPathUnFreeze != nil && gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        UIAlertView *mailAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Are you sure you want to unfreeze this post?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
+        [mailAlert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+        {
+            PFObject *post = [postsArray objectAtIndex:indexPathUnFreeze.row];
+            [post setObject:@NO forKey:@"isRequested"];
+            [post saveEventually];
+        }
+            break;
+        case 1:
+            break;
+    }
 }
 
 - (void)fetchPosts
@@ -74,7 +106,7 @@
     PFFile *imageFile = [post objectForKey:@"imageFile"];
     [cell.thumbnail setFile:imageFile];
     [cell.thumbnail loadInBackground];
-    if (![[post objectForKey:@"isRequested"]boolValue]) {
+    if ([[post objectForKey:@"isRequested"]boolValue]) {
         cell.userInteractionEnabled = YES;
         cell.arrowImage.hidden = NO;
     }

@@ -21,6 +21,13 @@
     [self.callButton setTitle:[self.requesterPost valueForKey:@"requesterPhoneNumber"] forState:UIControlStateNormal];
     [self.emailButton setTitle:[self.requesterPost valueForKey:@"requesterEmailId"] forState:UIControlStateNormal];
     self.navigationController.navigationItem.hidesBackButton = NO;
+    self.title = @"Contact Info";
+    
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
