@@ -28,12 +28,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self fetchPosts];
-    self.title = @"Offerings";
     self.giveButton.layer.cornerRadius = self.giveButton.frame.size.width/2.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationItem.title = @"Offerings";
     self.navigationController.navigationBarHidden = NO;
     [self setupSideMenuButton];
 }

@@ -35,10 +35,17 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingLocation];
     
-    self.mkMapView.showsUserLocation = YES;
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchLocations)];
     
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:searchButton,nil];
+    
+    MKCoordinateRegion newRegion;
+    newRegion.center.latitude = self.userLocation.latitude;
+    newRegion.center.longitude = self.userLocation.longitude;
+    
+    newRegion.span.latitudeDelta = 0.112872;
+    newRegion.span.longitudeDelta = 0.109863;
+    [self.mkMapView setRegion:newRegion animated:NO];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -55,9 +62,11 @@ static NSString *kCellIdentifier = @"cellIdentifier";
             annotation.coordinate = location.coordinate;
             [self.mkMapView removeAnnotations:self.mkMapView.annotations];
             [self.mkMapView addAnnotation:annotation];
-            [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:YES];
+            [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:NO];
             self.mkMapView.centerCoordinate = location.coordinate;
         }];
+    }else{
+        [self.mkMapView setShowsUserLocation:YES];
     }
 }
 - (void)searchLocations
@@ -97,6 +106,8 @@ static NSString *kCellIdentifier = @"cellIdentifier";
     annotation.coordinate = mapItem.placemark.location.coordinate;
     annotation.title = mapItem.name;
     annotation.url = mapItem.url;
+    [self.mkMapView removeAnnotations:self.mkMapView.annotations];
+    [self.mkMapView setShowsUserLocation:NO];
     [self.mkMapView addAnnotation:annotation];
     
     [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:YES];
@@ -209,7 +220,7 @@ static NSString *kCellIdentifier = @"cellIdentifier";
             annotation.coordinate = newLocation.coordinate;
             [self.mkMapView removeAnnotations:self.mkMapView.annotations];
             [self.mkMapView addAnnotation:annotation];
-            [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:YES];
+            [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:NO];
             self.mkMapView.centerCoordinate = newLocation.coordinate;
         }];
         [GlobalData sharedGlobalData].selectedLocationGeoPoint = [PFGeoPoint geoPointWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude];
@@ -262,8 +273,9 @@ didChangeDragState:(MKAnnotationViewDragState)newState
             annotation.title = [addressDictionary objectForKey:@"Name"];
             annotation.coordinate = droppedAt;
             [self.mkMapView removeAnnotations:self.mkMapView.annotations];
+            [self.mkMapView setShowsUserLocation:NO];
             [self.mkMapView addAnnotation:annotation];
-            [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:YES];
+            [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:NO];
         }];
         [GlobalData sharedGlobalData].selectedLocationGeoPoint = [PFGeoPoint geoPointWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
     }

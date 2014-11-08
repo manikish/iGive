@@ -20,7 +20,7 @@
     NSData *imageData;
 
 }
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UITextField *offeringTitleTextField;
 @property (weak, nonatomic) IBOutlet UIButton *imageUploadButton;
 @property (nonatomic) UIImagePickerController *imagePickerController;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -33,6 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.imagePickerController = [[UIImagePickerController alloc]init];
+    self.title = @"Add an Offering";
+    self.navigationController.navigationBar.topItem.title = @"";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,7 +107,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField == _titleTextField) {
+    if (textField == _offeringTitleTextField) {
         
     }
     else
@@ -116,14 +118,14 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (textField == _titleTextField) {
+    if (textField == _offeringTitleTextField) {
         self.title = textField.text;
     }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if (textField == _titleTextField) {
+    if (textField == _offeringTitleTextField) {
         self.title = textField.text;
     }
     return YES;
