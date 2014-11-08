@@ -15,7 +15,7 @@
 
 @interface PostViewController ()
 {
-    NSString *title;
+    NSString *offeringTitle;
     UIImage *imageToUpload;
     NSData *imageData;
 
@@ -119,14 +119,14 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == _offeringTitleTextField) {
-        self.title = textField.text;
+        offeringTitle = textField.text;
     }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (textField == _offeringTitleTextField) {
-        self.title = textField.text;
+        offeringTitle = textField.text;
     }
     return YES;
 }
@@ -174,11 +174,11 @@
     [self performSegueWithIdentifier:@"Post_Location" sender:self];
 }
 - (IBAction)post:(id)sender {
-    if (self.title.length > 0) {
+    if (offeringTitle.length > 0) {
         if (imageData!= nil) {
             if ([GlobalData sharedGlobalData].selectedLocationGeoPoint != nil) {
                 PFObject *post = [PFObject objectWithClassName:@"Posts"];
-                [post setObject:self.title forKey:@"title"];
+                [post setObject:offeringTitle forKey:@"title"];
                 [post setObject:[PFFile fileWithName:@"image.jpg" data:imageData contentType:@"image/jpeg"] forKey:@"imageData"];
                 [post setObject:[GlobalData sharedGlobalData].selectedLocationGeoPoint forKey:@"geoLocation"];
                 [post setObject:[PFUser currentUser] forKey:@"user"];
