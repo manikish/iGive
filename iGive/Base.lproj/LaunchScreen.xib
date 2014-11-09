@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginScreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="F3b-Ka-BfW">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginScreen.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="F3b-Ka-BfW">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
             </subviews>
@@ -27,7 +27,7 @@
         </view>
     </objects>
     <resources>
-        <image name="loginScreen.png" width="720" height="1280"/>
+        <image name="loginScreen.jpg" width="720" height="1280"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

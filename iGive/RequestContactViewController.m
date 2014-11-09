@@ -24,12 +24,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
     
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    name = [userDefaults objectForKey:@"name"];
+    if (name == nil) {
+        name = [[PFUser currentUser]objectForKey:@"fbUsername"];
+    }
+    [self.nameTextField setText:name];
+    
+    phoneNumber = [userDefaults objectForKey:@"phoneNumber"];
+    if (phoneNumber != nil) {
+        [self.phoneNumberTextField setText:phoneNumber];
+    }
+    
+    emailId = [userDefaults objectForKey:@"emailId"];
+    if (emailId!=nil) {
+        [self.emailIdTextField setText:emailId];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,17 +120,18 @@
                         NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
                                               [NSString stringWithFormat:@"%@ has requested your item with name %@ on iGive",name,[self.post objectForKey:@"title"]], @"alert",
                                               @"Increment",@"badge",
-                                              @"",@"sound",nil];
+                                              @"",@"sound",
+                                              nil];
                         [push setData:data];
                         [push sendPushInBackground];
 
-                        [self.post setObject:@"true" forKey:@"isRequested"];
+                        [self.post setObject:@YES forKey:@"isRequested"];
                         [self.post saveInBackground];
+                        [self updateUserDefaults];
                     }
                 }];
             }
-            else
-            {
+            else {
                 [[[UIAlertView alloc]initWithTitle:nil message:@"Please enter your mobile number" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil]show];
             }
         }
@@ -127,10 +140,23 @@
             [[[UIAlertView alloc]initWithTitle:nil message:@"Please enter a valid E-mail address" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil]show];
         }
     }
-    else
-    {
+    else {
         [[[UIAlertView alloc]initWithTitle:nil message:@"Please enter your name" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil]show];
     }
+}
+
+- (void)updateUserDefaults
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *appDomain = [[NSBundle mainBundle]bundleIdentifier];
+    [userDefaults removePersistentDomainForName:appDomain];
+    
+    [userDefaults setObject:phoneNumber forKey:@"phoneNumber"];
+    [userDefaults setObject:name forKey:@"name"];
+    [userDefaults setObject:emailId forKey:@"emailId"];
+    
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 /*

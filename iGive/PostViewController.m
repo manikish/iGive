@@ -32,7 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.imagePickerController = [[UIImagePickerController alloc]init];
     self.title = @"Add an Offering";
     self.navigationController.navigationBar.topItem.title = @"";
 }
@@ -105,17 +104,6 @@
     return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    if (textField == _offeringTitleTextField) {
-        
-    }
-    else
-    {
-        
-    }
-}
-
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == _offeringTitleTextField) {
@@ -137,7 +125,8 @@
     return YES;
 }
 
-- (IBAction)uploadImage:(id)sender {
+- (void)showImagePicker
+{
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
@@ -145,15 +134,18 @@
         imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePickerController.delegate = self;
         imagePickerController.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeImage, nil];
-        imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-//        imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         
         self.imagePickerController = imagePickerController;
         [self presentViewController:self.imagePickerController animated:YES completion:nil];
     }
-
-    
 }
+
+- (IBAction)uploadImage:(id)sender {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self showImagePicker];
+    }];
+}
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *originalImage, *editedImage;
@@ -166,8 +158,9 @@
         imageToUpload = originalImage;
     }
     imageData = UIImageJPEGRepresentation(imageToUpload, 0.0);
-    [self.imageUploadButton setImage:imageToUpload forState:UIControlStateNormal];
-//    [self.imageUploadButton setBackgroundImage:imageToUpload forState:UIControlStateNormal];
+    
+    [self.imageUploadButton setBackgroundImage:imageToUpload forState:UIControlStateNormal];
+    [self.imageUploadButton setImage:nil forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 - (IBAction)getLocationToCollect:(id)sender {
@@ -179,11 +172,11 @@
             if ([GlobalData sharedGlobalData].selectedLocationGeoPoint != nil) {
                 PFObject *post = [PFObject objectWithClassName:@"Posts"];
                 [post setObject:offeringTitle forKey:@"title"];
-                [post setObject:[PFFile fileWithName:@"image.jpg" data:imageData contentType:@"image/jpeg"] forKey:@"imageData"];
+                [post setObject:[PFFile fileWithName:@"image.jpg" data:imageData contentType:@"image/jpeg"] forKey:@"imageFile"];
                 [post setObject:[GlobalData sharedGlobalData].selectedLocationGeoPoint forKey:@"geoLocation"];
                 [post setObject:[PFUser currentUser] forKey:@"user"];
-                [post setObject:@false forKey:@"isRequested"];
-                [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                [post setObject:@NO forKey:@"isRequested"];
+                [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
                 [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
                         [self.navigationController popViewControllerAnimated:YES];
@@ -191,7 +184,7 @@
                     else{
                         [[[UIAlertView alloc]initWithTitle:@"Network Error" message:@"Please try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil]show];
                     }
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                 }];
             }
             else{

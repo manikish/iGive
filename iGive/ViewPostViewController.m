@@ -41,17 +41,17 @@
         locationName = [addressDictionary objectForKey:@"Name"];
         [self.locationDetailsButton setTitle:locationName forState:UIControlStateNormal];
     }];
-//    PFUser *donor = [self.post objectForKey:@"user"];
-//    if ([[[PFUser currentUser] objectId]isEqualToString:[donor objectId]]) {
-//        self.requestContactButton.enabled = NO;
-//    }
-//    else
-//    {
-//        self.requestContactButton.enabled = YES;
-//    }
+    PFUser *donor = [self.post objectForKey:@"user"];
+    if ([[[PFUser currentUser] objectId]isEqualToString:[donor objectId]]) {
+        self.requestContactButton.enabled = NO;
+    }
+    else
+    {
+        self.requestContactButton.enabled = YES;
+    }
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     
 }

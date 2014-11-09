@@ -27,12 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.title = @"My Postings";
+    self.title = @"My Offerings";
     [self fetchPosts];
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 2.0;
+    lpgr.minimumPressDuration = 1.0;
     lpgr.delegate = self;
     [self.tableView addGestureRecognizer:lpgr];
 }
@@ -59,7 +59,9 @@
         {
             PFObject *post = [postsArray objectAtIndex:indexPathUnFreeze.row];
             [post setObject:@NO forKey:@"isRequested"];
-            [post saveEventually];
+            [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [self fetchPosts];
+            }];
         }
             break;
         case 1:
@@ -107,7 +109,6 @@
     [cell.thumbnail setFile:imageFile];
     [cell.thumbnail loadInBackground];
     if ([[post objectForKey:@"isRequested"]boolValue]) {
-        cell.userInteractionEnabled = YES;
         cell.arrowImage.hidden = NO;
     }
     PFQuery *fetchRequest = [PFQuery queryWithClassName:@"Requests"];

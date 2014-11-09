@@ -67,7 +67,6 @@
     PFFile *imageFile = [post objectForKey:@"imageFile"];
     [cell.postThumbnail setFile:imageFile];
     [cell.postThumbnail loadInBackground];
-    cell.userInteractionEnabled = NO;
     cell.requestedLabel.hidden = YES;
     cell.arrowImageView.hidden = YES;
     return cell;

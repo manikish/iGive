@@ -11,6 +11,7 @@
 @interface RequesterDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
 
@@ -20,6 +21,7 @@
     [super viewDidLoad];
     [self.callButton setTitle:[self.requesterPost valueForKey:@"requesterPhoneNumber"] forState:UIControlStateNormal];
     [self.emailButton setTitle:[self.requesterPost valueForKey:@"requesterEmailId"] forState:UIControlStateNormal];
+    [self.nameLabel setText:[self.requesterPost valueForKey:@"requesterName"]];
     self.navigationController.navigationItem.hidesBackButton = NO;
     self.title = @"Contact Info";
     
@@ -70,6 +72,9 @@
             break;
     }
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+- (IBAction)backButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

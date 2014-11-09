@@ -18,6 +18,7 @@
     SWRevealViewController *revealVC;
     NSArray *postsArray;
     PFObject *viewPost;
+    UIRefreshControl *refreshControl;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *giveButton;
@@ -27,14 +28,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self fetchPosts];
     self.giveButton.layer.cornerRadius = self.giveButton.frame.size.width/2.0;
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshOfferings) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationItem.title = @"Offerings";
     self.navigationController.navigationBarHidden = NO;
+    [self fetchPosts];
     [self setupSideMenuButton];
 }
 
@@ -53,37 +59,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)refreshOfferings {
+    [self fetchPosts];
+}
+
 - (void)fetchPosts
 {
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    PFQuery *fetchPosts = [PFQuery queryWithClassName:@"Posts"];
-    [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if ([objects count] >0) {
-            postsArray = objects;
-            self.tableView.hidden = NO;
-            [self.tableView reloadData];
-        }else{
-            UILabel *noPostsLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+100.0, self.view.frame.size.width, 21.0)];
-            [noPostsLabel setText:@"No one posted yet. Post One"];
-            noPostsLabel.textAlignment = NSTextAlignmentCenter;
-            noPostsLabel.textColor = [UIColor blackColor];
-            [self.view addSubview:noPostsLabel];
-            self.tableView.hidden = YES;
-            [self.view bringSubviewToFront:noPostsLabel];
-        }
-        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+        PFQuery *fetchPosts = [PFQuery queryWithClassName:@"Posts"];
+        [fetchPosts whereKey:@"geoLocation" nearGeoPoint:geoPoint withinMiles:100.0];
+        [fetchPosts setLimit:100.0];
+        [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if ([objects count] >0) {
+                postsArray = objects;
+                self.tableView.hidden = NO;
+                [self.tableView reloadData];
+            }else{
+                UILabel *noPostsLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+100.0, self.view.frame.size.width, 21.0)];
+                [noPostsLabel setText:@"No one posted yet. Post One"];
+                noPostsLabel.textAlignment = NSTextAlignmentCenter;
+                noPostsLabel.textColor = [UIColor blackColor];
+                [self.view addSubview:noPostsLabel];
+                self.tableView.hidden = YES;
+                [self.view bringSubviewToFront:noPostsLabel];
+            }
+            if ([refreshControl isRefreshing]) {
+                [refreshControl endRefreshing];
+            }
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+        }];
     }];
-
-//    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
-//        PFQuery *fetchPosts = [PFQuery queryWithClassName:@"Posts"];
-//        [fetchPosts whereKey:@"geoLocation" nearGeoPoint:geoPoint withinMiles:100.0];
-//        [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//            postsArray = objects;
-//            [self.tableView reloadData];
-//            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-//        }];
-//    }];
-    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

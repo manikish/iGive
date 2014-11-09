@@ -9,6 +9,7 @@
 #import "HelpViewController.h"
 
 @interface HelpViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *helpWebView;
 
 @end
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Help";
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"help" ofType:@"html"];
+    NSURL *url=[NSURL fileURLWithPath:htmlFile];
+    NSURLRequest *request=[NSURLRequest requestWithURL:url];
+    [self.helpWebView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning {
