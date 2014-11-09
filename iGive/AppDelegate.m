@@ -79,6 +79,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        application.applicationIconBadgeNumber = 0;
+        [currentInstallation saveEventually];
+    }
     [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 

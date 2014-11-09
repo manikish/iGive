@@ -48,7 +48,7 @@
     
     indexPathUnFreeze = [self.tableView indexPathForRowAtPoint:p];
     if (indexPathUnFreeze != nil && gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        UIAlertView *mailAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Are you sure you want to unfreeze this post?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
+        UIAlertView *mailAlert = [[UIAlertView alloc]initWithTitle:@"" message:@"Are you sure you want to reject the request and make this offering available to other users?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
         [mailAlert show];
     }
 }

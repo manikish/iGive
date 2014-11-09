@@ -24,12 +24,6 @@
     [self.nameLabel setText:[self.requesterPost valueForKey:@"requesterName"]];
     self.navigationController.navigationItem.hidesBackButton = NO;
     self.title = @"Contact Info";
-    
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    if (currentInstallation.badge != 0) {
-        currentInstallation.badge = 0;
-        [currentInstallation saveEventually];
-    }
 }
 
 - (void)didReceiveMemoryWarning {

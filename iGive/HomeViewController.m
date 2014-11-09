@@ -69,6 +69,7 @@
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
         PFQuery *fetchPosts = [PFQuery queryWithClassName:@"Posts"];
         [fetchPosts whereKey:@"geoLocation" nearGeoPoint:geoPoint withinMiles:100.0];
+        [fetchPosts whereKey:@"user" notEqualTo:[PFUser currentUser]];
         [fetchPosts setLimit:100.0];
         [fetchPosts findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if ([objects count] >0) {

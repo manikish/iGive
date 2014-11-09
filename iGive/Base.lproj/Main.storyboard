@@ -722,6 +722,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEl-LY-dGr">
                                 <rect key="frame" x="16" y="15" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <inset key="contentEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -732,9 +734,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="buG-1Z-R29">
                                 <rect key="frame" x="0.0" y="10" width="40" height="40"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQT-c8-Lak">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQT-c8-Lak">
                                 <rect key="frame" x="88" y="20" width="145" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>

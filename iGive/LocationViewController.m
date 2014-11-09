@@ -65,8 +65,6 @@ static NSString *kCellIdentifier = @"cellIdentifier";
             [self.mkMapView selectAnnotation:[self.mkMapView.annotations objectAtIndex:0] animated:NO];
             self.mkMapView.centerCoordinate = location.coordinate;
         }];
-    }else{
-        [self.mkMapView setShowsUserLocation:YES];
     }
 }
 - (void)searchLocations

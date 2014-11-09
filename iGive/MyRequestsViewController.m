@@ -82,7 +82,11 @@
     [post deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [postsArray removeObject:post];
         [self.tableView reloadData];
-        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+        PFObject *requestedPost = [[post valueForKey:@"requestedPost"]fetchIfNeeded];
+        [requestedPost setObject:@NO forKey:@"isRequested"];
+        [requestedPost saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+        }];
     }];
 }
 /*
